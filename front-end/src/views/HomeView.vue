@@ -1,18 +1,46 @@
 <template>
   <div>
-    <ul>
-      <li v-for="animal in animals" :key="animal">{{ animal }}</li>
-    </ul>
-    <CoolButton />
-    <CoolCard />
+    <div>
+      <form name="login-form" @submit.prevent="login(username, password)">
+        <div>
+          <label for="username">Username: </label>
+          <input id="username" type="text" v-model="username" />
+        </div>
+        <div>
+          <label for="password">Password: </label>
+          <input id="password" type="password" v-model="password" />
+        </div>
+        <button class="submit-button" type="submit">Login</button>
+      </form>
+    </div>
   </div>
 </template>
 
 <script setup>
-import CoolButton from "../components/CoolButton.vue";
-import CoolCard from "../components/CoolCard.vue";
+import { ref } from "vue";
 
-let animals = ["Monkey", "Shark", "Ape", "Bogdan"];
+const username = ref("");
+const password = ref("");
+
+function notLogin(username, password) {
+  console.log(username);
+  console.log(password);
+}
+
+async function login(username, password) {
+  console.log(username, password);
+  const res = await fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: username.toLowerCase(),
+      password: password,
+    }),
+  });
+  console.log(res);
+}
 </script>
 
 <style scoped></style>
