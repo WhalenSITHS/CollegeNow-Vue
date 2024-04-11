@@ -28,18 +28,22 @@ function notLogin(username, password) {
 }
 
 async function login(username, password) {
-  console.log(username, password);
-  const res = await fetch("http://localhost:3000/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username: username.toLowerCase(),
-      password: password,
-    }),
-  });
-  console.log(res);
+  try {
+    const res = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username.toLowerCase(),
+        password: password,
+      }),
+    });
+    const user = await res.json();
+    console.log(user);
+  } catch (error) {
+    console.log(error);
+  }
 }
 </script>
 
