@@ -1,32 +1,26 @@
 <template>
   <div>
     <div>
-      <form name="login-form" @submit.prevent="login(username, password)">
-        <div>
-          <label for="username">Username: </label>
-          <input id="username" type="text" v-model="username" />
-        </div>
-        <div>
-          <label for="password">Password: </label>
-          <input id="password" type="password" v-model="password" />
-        </div>
-        <button class="submit-button" type="submit">Login</button>
-      </form>
+      <Signin v-if="!user" />
+      <SignUp v-if="user" />
     </div>
+    <button @click="change">Already Signed Up?</button>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-
+import SignUp from "../components/SignUp.vue";
 const username = ref("");
 const password = ref("");
-
+const user = true;
 function notLogin(username, password) {
   console.log(username);
   console.log(password);
 }
-
+function change() {
+  user = false;
+}
 async function login(username, password) {
   try {
     const res = await fetch("http://localhost:3000/login", {
