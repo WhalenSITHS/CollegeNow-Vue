@@ -25,6 +25,22 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/NodeView.vue"),
     },
+    {
+      path: "/poke",
+      name: "poke",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/AllPokemon.vue"),
+    },
+    {
+      path: "/data/:id",
+      name: "data",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/PokemonData.vue"),
+    },
   ],
 });
 
