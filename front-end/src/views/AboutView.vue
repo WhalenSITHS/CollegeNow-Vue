@@ -1,27 +1,28 @@
 <template>
-  <div>
-    <PokeCard
-      v-for="(monster, index) in pokemon"
-      :key="monster.name"
-      :pokemon="monster"
-      :id="index + 1"
-    />
-  </div>
+  <ul class="size-container">
+    <li class="size">Sizes</li>
+    <div>
+      <li>Large</li>
+      <li>Medium</li>
+      <li>Small</li>
+    </div>
+  </ul>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
-import PokeCard from "../components/PokeCard.vue";
-const pokemon = ref("");
+<script setup></script>
 
-async function getPokemon() {
-  let res = await fetch("https://pokeapi.co/api/v2/pokemon");
-  let data = await res.json();
-  pokemon.value = data.results;
+<style scoped>
+div {
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
 }
-onMounted(() => {
-  getPokemon();
-});
-</script>
-
-<style scoped></style>
+.size-container {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+li {
+  font-size: 12px;
+}
+</style>
