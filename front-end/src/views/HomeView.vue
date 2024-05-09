@@ -41,63 +41,7 @@
   </section>
 </template>
 
-<script setup>
-import { onMounted } from "vue";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-onMounted(() => {
-  const firstSection = {
-    firstWord: document.querySelector(".first-word"),
-    secondWord: document.querySelector(".second-word"),
-    words: document.querySelectorAll("first-header"),
-    firstBG: document.querySelector(".first-bg"),
-    secondBG: document.querySelector(".second-bg"),
-  };
-  const tl = gsap.timeline({ delay: 0.5 });
-
-  /* tl.to(firstSection.firstBG, { scaleX: 1 }); */
-  tl.to(".reveal-1", { width: "100%", duration: 0.2 });
-  tl.to(".reveal-2", { width: "100%", duration: 0.2 });
-  tl.to(".first-header", { opacity: 1, duration: 0.1 });
-  tl.to(".reveal-1", { width: "0%", duration: 0.2 });
-  tl.to(".reveal-2", { width: "0%", duration: 0.2 });
-
-  const tl2 = gsap.timeline({ scrollTrigger: ".second", delay: 0.3 });
-  tl2.to(".wendy-2", {
-    opacity: 0,
-    duration: 1,
-  });
-
-  const letters = document.querySelector(".third-header").textContent;
-  const lettersArr = Array.from(letters);
-  function createLetterSpans() {
-    let node = document.querySelector(".third-header");
-    node.innerHTML = "";
-    lettersArr.forEach((letter) => {
-      node.insertAdjacentHTML(
-        "beforeend",
-        `<span class="letter-span">${letter}</span>`
-      );
-    });
-  }
-
-  createLetterSpans();
-  const tl3 = gsap.timeline({ scrollTrigger: ".third-header", delay: 0.2 });
-  tl3.from(".letter-span", {
-    opacity: 0,
-    y: -20,
-    stagger: 0.05,
-  });
-
-  const tl4 = gsap.timeline({ scrollTrigger: ".hero__heading", delay: 0.2 });
-  tl4.to(".hero--secondary", {
-    "--mask": "radial-gradient(circle at 50% 50%, black 100%, transparent 0)",
-    duration: 1,
-    ease: "bounce.out",
-  });
-});
-</script>
+<script setup></script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
